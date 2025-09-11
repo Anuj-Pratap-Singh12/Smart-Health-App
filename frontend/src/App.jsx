@@ -6,12 +6,15 @@ import Login from './components/screens/Login';
 import SignUp from './components/screens/SignUp';
 import Dashboard from './components/screens/Dashboard';
 import Form from './components/screens/Form';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 function App() {
 
   return (
     <>
       <Router>
+        
         <div>
           <Routes>
             <Route exact path = '/' element = {<Home/>}/>
@@ -21,9 +24,9 @@ function App() {
             <Route exact path = '/Form' element={<Form/>}/>
           </Routes>
         </div>
+        <Footer/>
       </Router>
     </>
-  )
+  );
 }
-
-export default App
+export default App;
