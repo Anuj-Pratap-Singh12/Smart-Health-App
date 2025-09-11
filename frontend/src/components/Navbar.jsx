@@ -8,7 +8,7 @@ const Navbar = () => {
     String(text || "").toLowerCase().trim().replace(/\s+/g, "-");
 
   return (
-    <nav className="bg-gray-900 text-white shadow-lg sticky top-0 z-50">
+    <nav className="bg-white text-gray-800 shadow-lg sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
         {/* Brand */}
         <div className="flex items-center space-x-2">
@@ -25,7 +25,7 @@ const Navbar = () => {
                      9.6-4.302 9.6-9.6 9.6z"/>
           </svg>
           <div className="leading-tight">
-            <div className="text-lg md:text-xl font-bold">Smart Health</div>
+            <div className="text-lg md:text-xl  text-green-500 font-bold">Smart Health</div>
             <div className="text-xs md:text-sm text-gray-400">Early Warning System</div>
           </div>
         </div>
@@ -52,7 +52,7 @@ const Navbar = () => {
           {/* Notification Bell */}
           <button className="relative" aria-label="Notifications">
             <svg
-              className="w-6 h-6 text-gray-300 hover:text-green-400"
+              className="w-6 h-6 text-gray-500 hover:text-green-400"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
