@@ -2,154 +2,118 @@ import React, { useState } from "react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const navItems = ["Home", "Monitoring", "Awareness", "Reports", "Contact"];
-
-  const slugify = (text) =>
-    String(text || "").toLowerCase().trim().replace(/\s+/g, "-");
+  const [profileOpen, setProfileOpen] = useState(false);
 
   return (
-    <nav className="bg-white text-gray-800 shadow-lg sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-        {/* Brand */}
-        <div className="flex items-center space-x-2">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-10 h-10 text-green-400"
-            fill="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path d="M12 0C5.372 0 0 5.372 0 12s5.372 
-                     12 12 12 12-5.372 12-12S18.628 
-                     0 12 0zm0 21.6c-5.298 0-9.6-4.302-9.6-9.6S6.702 
-                     2.4 12 2.4s9.6 4.302 9.6 
-                     9.6-4.302 9.6-9.6 9.6z"/>
-          </svg>
-          <div className="leading-tight">
-            <div className="text-lg md:text-xl  text-green-500 font-bold">Smart Health</div>
-            <div className="text-xs md:text-sm text-gray-400">Early Warning System</div>
-          </div>
+    <nav className="bg-white text-gray-900 shadow-lg">
+      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between flex-nowrap">
+        
+        {/* Logo */}
+        <div className="flex items-center space-x-2 flex-shrink-0">
+          <img
+            src="https://flowbite.com/docs/images/logo.svg"
+            alt="Logo"
+            className="h-8 w-8"
+          />
+          <span className="font-bold text-3xl whitespace-nowrap">
+            Smart Health
+          </span>
         </div>
 
-        {/* Links for tablet+desktop */}
-        <div className="hidden md:flex items-center space-x-6 font-medium">
-          {navItems.map((item) => (
-            <a
-              key={item}
-              href={"#" + slugify(item)}
-              className="relative group"
-            >
-              <span className="transition-colors duration-200 group-hover:text-green-400">
-                {item}
-              </span>
-              {/* underline effect */}
-              <span className="block h-[2px] bg-green-400 scale-x-0 group-hover:scale-x-100 transform origin-left transition-transform duration-300 mt-1" />
-            </a>
-          ))}
+        {/* Desktop Links (show only on large screens) */}
+        <div className="hidden lg:flex items-center space-x-4 xl:space-x-6  text-xl font-medium flex-shrink">
+          <a href="#" className="hover:text-green-600 whitespace-nowrap">Home</a>
+          <a href="#" className="hover:text-green-600 whitespace-nowrap">About</a>
+          <a href="#" className="hover:text-green-600 whitespace-nowrap">Reports</a>
+          <a href="#" className="hover:text-green-600 whitespace-nowrap">Communities</a>
+          <a href="#" className="hover:text-green-600 whitespace-nowrap">Contact</a>
         </div>
 
-        {/* Right Side (tablet + desktop) */}
-        <div className="hidden md:flex items-center space-x-3 flex-shrink-0">
-          {/* Notification Bell */}
-          <button className="relative" aria-label="Notifications">
-            <svg
-              className="w-6 h-6 text-gray-500 hover:text-green-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+        {/* Right side */}
+        <div className="flex items-center space-x-3 flex-shrink-0">
+          {/* Profile dropdown (desktop) */}
+          <div className="relative hidden lg:block">
+            <button
+              onClick={() => setProfileOpen(!profileOpen)}
+              className="focus:outline-none"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 17h5l-1.405-1.405M19 13V9a7 7 0 10-14 0v4l-1.405 1.405A2.032 
-                2.032 0 004 17h16a2.032 2.032 0 00.405-2.595L19 13z"
+              <img
+                src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                alt="profile"
+                className="h-8 w-8 rounded-full"
               />
-            </svg>
-            <span className="absolute -top-1 -right-1 bg-red-500 text-xs px-1 rounded-full">
-              2
-            </span>
-          </button>
-
-          {/* Avatar */}
-          <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-white font-bold">
-            U
+            </button>
+            {profileOpen && (
+              <div className="absolute right-0 mt-2 w-48 bg-white text-gray-800 rounded-lg shadow-lg z-50">
+                <div className="px-4 py-3 border-b">
+                  <p className="font-semibold">Aman Gupta</p>
+                  <p className="text-sm text-gray-500">name@gmail.com</p>
+                </div>
+                <a href="#" className="block px-4 py-2 hover:bg-gray-100">Dashboard</a>
+                <a href="#" className="block px-4 py-2 hover:bg-gray-100">My Account</a>
+                <a href="#" className="block px-4 py-2 hover:bg-gray-100">Settings</a>
+                <a href="#" className="block px-4 py-2 hover:bg-gray-100">Sign out</a>
+              </div>
+            )}
           </div>
 
-          {/* Login & Signup */}
-          <a
-            href="/login"
-            className="px-4 py-1 border border-green-500 rounded-md text-green-400 hover:bg-green-500 hover:text-white transition whitespace-nowrap"
-          >
-            Login
-          </a>
-          <a
-            href="/signup"
-            className="px-4 py-1 bg-green-500 rounded-md text-white hover:bg-green-600 transition whitespace-nowrap"
-          >
-            Signup
-          </a>
-        </div>
+          {/* Get Started button (desktop only) */}
+          <div className="hidden lg:block flex-shrink-0">
+            <button
+              type="button"
+              className="text-white bg-green-600 hover:bg-green-700 
+                         focus:ring-4 focus:outline-none focus:ring-green-300 
+                         font-medium rounded-lg text-lg px-4 py-2 whitespace-nowrap"
+            >
+              Get started
+            </button>
+          </div>
 
-        {/* Mobile hamburger */}
-        <div className="md:hidden">
-          <button onClick={() => setIsOpen(!isOpen)} aria-label="Toggle Menu">
-            <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {isOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12"/>
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16"/>
-              )}
-            </svg>
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="lg:hidden focus:outline-none"
+          >
+            {isOpen ? (
+              // X icon
+              <div className="space-y-1">
+                <span className="block w-6 h-0.5 bg-gray-900 rotate-45 translate-y-1"></span>
+                <span className="block w-6 h-0.5 bg-gray-900 -rotate-45 -translate-y-1"></span>
+              </div>
+            ) : (
+              // Hamburger icon
+              <div className="space-y-1">
+                <span className="block w-6 h-0.5 bg-gray-900"></span>
+                <span className="block w-6 h-0.5 bg-gray-900"></span>
+                <span className="block w-6 h-0.5 bg-gray-900"></span>
+              </div>
+            )}
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile Dropdown */}
       {isOpen && (
-        <div className="md:hidden bg-gray-800 px-4 py-3 space-y-3">
-          {navItems.map((item) => (
-            <a key={item} href={"#" + slugify(item)} className="block group">
-              <span className="transition-colors duration-200 group-hover:text-green-400">{item}</span>
-              <span className="block h-[2px] bg-green-400 scale-x-0 group-hover:scale-x-100 transform origin-left transition-transform duration-300 mt-1" />
-            </a>
-          ))}
-
-          <div className="flex items-center space-x-4 pt-3 border-t border-gray-700">
-            <button className="relative" aria-label="Notifications">
-              <svg
-                className="w-6 h-6 text-gray-300 hover:text-green-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 17h5l-1.405-1.405M19 13V9a7 7 0 10-14 0v4l-1.405 1.405A2.032 
-                  2.032 0 004 17h16a2.032 2.032 0 00.405-2.595L19 13z"
-                />
-              </svg>
-              <span className="absolute -top-1 -right-1 bg-red-500 text-xs px-1 rounded-full">2</span>
-            </button>
-
-            <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-white font-bold">U</div>
-          </div>
-
-          <div className="space-y-2 pt-2">
-            <a
-              href="/login"
-              className="block w-full text-center px-3 py-2 border border-green-500 text-green-400 rounded-md hover:bg-green-500 hover:text-white transition"
-            >
-              Login
-            </a>
-            <a
-              href="/signup"
-              className="block w-full text-center px-3 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition"
-            >
-              Signup
-            </a>
-          </div>
+        <div className="lg:hidden bg-gray-100  text-gray-900 px-4 py-3  space-y-2 shadow-md t">
+          <a href="#" className="block hover:text-green-600">Home</a>
+          <a href="#" className="block hover:text-green-600">About</a>
+          <a href="#" className="block hover:text-green-600">Reports</a>
+          <a href="#" className="block hover:text-green-600">Communities</a>
+          <a href="#" className="block hover:text-green-600">Contact</a>
+          <hr className="my-2" />
+          {/* Profile + Button in mobile */}
+          <a href="#" className="block hover:text-green-600">Dashboard</a>
+          <a href="#" className="block hover:text-green-600">My Account</a>
+          <a href="#" className="block hover:text-green-600">Settings</a>
+          <a href="#" className="block hover:text-green-600">Sign out</a>
+          <button
+            type="button"
+            className="w-full mt-3 text-white bg-green-600 hover:bg-green-700 
+                       focus:ring-4 focus:outline-none focus:ring-green-300 
+                       font-medium rounded-lg text-lg px-4 py-2"
+          >
+            Get started
+          </button>
         </div>
       )}
     </nav>
