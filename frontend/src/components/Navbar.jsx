@@ -1,51 +1,55 @@
 import React from "react";
-import { Link } from "react-router-dom"; // using react-router for navigation
 
-export default function Navbar() {
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
+
   return (
-    <nav className="bg-gray-900 text-white px-6 py-3 flex items-center justify-between shadow-md">
-      {/* Logo / Brand */}
-      <div className="text-xl font-bold">MyWebsite</div>
+    <nav className="bg-white text-gray-900 shadow-lg">
+      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between flex-nowrap">
+        
+        {/* Logo */}
+        <div className="flex items-center space-x-2 flex-shrink-0">
+          <img
+            src="https://flowbite.com/docs/images/logo.svg"
+            alt="Logo"
+            className="h-8 w-8"
+          />
+          <span className="font-bold text-3xl whitespace-nowrap">
+            Smart Health
+          </span>
+        </div>
 
       {/* Navigation Links */}
       <ul className="flex space-x-6">
         <li>
-          <Link to="/" className="hover:text-green-400 transition">
+          <a href="#" className="hover:text-green-400 transition">
             Home
-          </Link>
+          </a>
         </li>
         <li>
-          <Link to="/about" className="hover:text-green-400 transition">
+          <a href="#" className="hover:text-green-400 transition">
             About
-          </Link>
+          </a>
         </li>
         <li>
-          <Link to="/services" className="hover:text-green-400 transition">
+          <a href="#" className="hover:text-green-400 transition">
             Services
-          </Link>
+          </a>
         </li>
         <li>
-          <Link to="/contact" className="hover:text-green-400 transition">
+          <a href="#" className="hover:text-green-400 transition">
             Contact
-          </Link>
+          </a>
         </li>
       </ul>
 
-      {/* Buttons */}
-      <div className="flex space-x-4">
-        <Link
-          to="/login"
-          className="bg-green-500 hover:bg-green-600 px-6 py-2 rounded-lg transition"
-        >
-          Login
-        </Link>
-        <Link
-          to="/signup"
-          className="bg-white text-green-600 border border-green-500 hover:bg-green-100 px-6 py-2 rounded-lg transition"
-        >
-          Signup
-        </Link>
-      </div>
+      {/* Button */}
+      <button className="bg-green-500 hover:bg-green-600 px-4 py-2 rounded-lg transition">
+        Login
+      </button>
     </nav>
   );
-}
+};
+
+export default Navbar;

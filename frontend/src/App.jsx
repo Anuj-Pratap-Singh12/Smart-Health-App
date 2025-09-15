@@ -6,13 +6,13 @@ import Login from './components/screens/Login';
 import SignUp from './components/screens/SignUp';
 import Dashboard from './components/screens/Dashboard';
 import Form from './components/screens/Form';
-import Alerts from './components/screens/Alerts';
 
 function App() {
 
   return (
     <>
       <Router>
+        
         <div>
           <Routes>
             <Route exact path = '/' element = {<Home/>}/>
@@ -23,9 +23,9 @@ function App() {
             <Route exact path = '/Alert' element={<Alerts/>}/>
           </Routes>
         </div>
+        <Footer/>
       </Router>
     </>
-  )
+  );
 }
-
-export default App
+export default App;
