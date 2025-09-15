@@ -6,6 +6,7 @@ import Login from './components/screens/Login';
 import SignUp from './components/screens/SignUp';
 import Dashboard from './components/screens/Dashboard';
 import Form from './components/screens/Form';
+import Alerts from './components/screens/Alerts';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
             <Route exact path = '/SignUp' element={<SignUp/>}/>
             <Route exact path = '/Dashboard' element={<Dashboard/>}/>
             <Route exact path = '/Form' element={<Form/>}/>
+            <Route exact path = '/Alert' element={<Alerts/>}/>
           </Routes>
         </div>
       </Router>

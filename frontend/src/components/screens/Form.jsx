@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ import navigate
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-
 import {
   User,
   Mail,
@@ -16,7 +16,25 @@ import {
   ClipboardList,
 } from "lucide-react";
 
+// ✅ Import ShadCN Alert
+import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
+
 const Form = () => {
+  const [showAlert, setShowAlert] = useState(false);
+  const navigate = useNavigate(); // ✅ hook for redirection
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // show success alert
+    setShowAlert(true);
+
+    // wait 2 seconds, then redirect to home page
+    setTimeout(() => {
+      navigate("/"); // ✅ redirects to Home
+    }, 2000);
+  };
+
   return (
     <section className="min-h-screen bg-gradient-to-br from-green-50 via-green-100 to-green-200 flex items-center justify-center px-6 py-16 relative">
       <div className="bg-white shadow-2xl rounded-3xl max-w-4xl w-full p-10 border-2 border-green-300 relative z-10">
@@ -30,8 +48,8 @@ const Form = () => {
         </p>
 
         {/* Form */}
-        <form className="space-y-12">
-          {/* Section: Personal Info */}
+        <form className="space-y-12" onSubmit={handleSubmit}>
+          {/* ---- Personal Info ---- */}
           <div>
             <h2 className="flex items-center text-2xl font-bold text-black mb-6">
               <User className="w-7 h-7 text-green-700 mr-2" /> Personal Details
@@ -47,6 +65,7 @@ const Form = () => {
                   type="text"
                   placeholder="Enter your name"
                   className="w-full px-4 py-3 rounded-xl border border-green-300 focus:ring-2 focus:ring-green-500 outline-none"
+                  required
                 />
               </div>
               <div>
@@ -57,6 +76,7 @@ const Form = () => {
                   type="email"
                   placeholder="Enter your email"
                   className="w-full px-4 py-3 rounded-xl border border-green-300 focus:ring-2 focus:ring-green-500 outline-none"
+                  required
                 />
               </div>
             </div>
@@ -70,13 +90,17 @@ const Form = () => {
                 <PhoneInput
                   country={"in"}
                   inputClass="!w-full !px-4 !py-3 !rounded-xl !border !border-green-300 focus:!ring-2 focus:!ring-green-500 !outline-none"
+                  required
                 />
               </div>
               <div>
                 <label className="block text-sm font-semibold text-green-800 mb-2 flex items-center">
                   <Briefcase className="w-4 h-4 mr-1" /> Role
                 </label>
-                <select className="w-full px-4 py-3 rounded-xl border border-green-300 focus:ring-2 focus:ring-green-500 outline-none">
+                <select
+                  className="w-full px-4 py-3 rounded-xl border border-green-300 focus:ring-2 focus:ring-green-500 outline-none"
+                  required
+                >
                   <option>Doctor</option>
                   <option>ASHA Worker</option>
                   <option>Community Volunteer</option>
@@ -95,6 +119,7 @@ const Form = () => {
                   type="text"
                   placeholder="Enter village or town"
                   className="w-full px-4 py-3 rounded-xl border border-green-300 focus:ring-2 focus:ring-green-500 outline-none"
+                  required
                 />
               </div>
               <div>
@@ -105,15 +130,14 @@ const Form = () => {
                   type="text"
                   placeholder="Enter district"
                   className="w-full px-4 py-3 rounded-xl border border-green-300 focus:ring-2 focus:ring-green-500 outline-none"
+                  required
                 />
               </div>
             </div>
           </div>
 
-          {/* Divider */}
+          {/* ---- Health Info ---- */}
           <hr className="border-t-2 border-green-200 my-6" />
-
-          {/* Section: Health Info */}
           <div>
             <h2 className="flex items-center text-2xl font-bold text-black mb-6">
               <Activity className="w-8 h-8 text-green-700 mr-2" /> Health Details
@@ -130,14 +154,11 @@ const Form = () => {
             </div>
           </div>
 
-          {/* Divider */}
+          {/* ---- Environmental Info ---- */}
           <hr className="border-t-2 border-green-200 my-6" />
-
-          {/* Section: Environmental Info */}
           <div>
             <h2 className="flex items-center text-2xl font-bold text-black mb-6">
-              <Droplets className="w-7 h-7 text-green-700 mr-2" /> Environmental
-              Details
+              <Droplets className="w-7 h-7 text-green-700 mr-2" /> Environmental Details
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
@@ -174,7 +195,6 @@ const Form = () => {
               </div>
             </div>
 
-            {/* AQI + Temp */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
               <div>
                 <label className="block text-sm font-semibold text-green-800 mb-2 flex items-center">
@@ -199,10 +219,8 @@ const Form = () => {
             </div>
           </div>
 
-          {/* Divider */}
+          {/* ---- Additional Info ---- */}
           <hr className="border-t-2 border-green-200 my-6" />
-
-          {/* Section: Additional Info */}
           <div>
             <h2 className="flex items-center text-2xl font-bold text-black mb-6">
               <ClipboardList className="w-7 h-7 text-green-700 mr-2" /> Additional Details
@@ -219,7 +237,7 @@ const Form = () => {
             </div>
           </div>
 
-          {/* Submit */}
+          {/* ---- Submit ---- */}
           <div className="text-center">
             <button
               type="submit"
@@ -229,6 +247,18 @@ const Form = () => {
             </button>
           </div>
         </form>
+
+        {/* ✅ Success Alert */}
+        {showAlert && (
+          <div className="mt-6">
+            <Alert>
+              <AlertTitle>✅ Report Submitted</AlertTitle>
+              <AlertDescription>
+                Thank you! Your health data has been submitted successfully.
+              </AlertDescription>
+            </Alert>
+          </div>
+        )}
       </div>
     </section>
   );
