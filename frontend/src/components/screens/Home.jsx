@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../Navbar";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   HeartPulse,
@@ -332,52 +333,25 @@ const Home = () => {
         </div>
       </section>
 
-{/* ================= DASHBOARD PREVIEW ================= */}
-<section className="py-16 -mt-8 bg-gray-50">
-  <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-    
-    {/* Left Content */}
-    <motion.div
-      initial={{ x: -50, opacity: 0 }}
-      whileInView={{ x: 0, opacity: 1 }}
-      transition={{ duration: 1 }}
-      className="space-y-6"
-    >
-      <motion.h2
-        className="text-4xl md:text-5xl font-extrabold leading-tight"
-        initial={{ y: 30, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-900 to-green-600 drop-shadow-md">
-          Real-Time Dashboard
-        </span>
-      </motion.h2>
-      
-      <motion.p
-        className="text-gray-700 text-lg font-medium leading-relaxed"
-        initial={{ y: 30, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1, delay: 0.3 }}
-      >
-        Track water contamination, disease cases, and AI predictions with 
-        interactive maps and analytics dashboards for real-time monitoring.
-      </motion.p>
-
-      <motion.div
-        className="flex space-x-4"
-        initial={{ y: 30, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1, delay: 0.6 }}
-      >
-        <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold shadow-lg transition transform hover:scale-105">
-          View Demo
-        </button>
-        <button className="border border-green-600 text-green-700 hover:bg-green-600 hover:text-white px-6 py-3 rounded-xl font-semibold shadow-lg transition transform hover:scale-105">
-          Learn More
-        </button>
-      </motion.div>
-    </motion.div>
+      {/* Dashboard Preview Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
+          <motion.div
+            initial={{ x: -50, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-4xl font-extrabold text-gray-800 mb-4">
+              Real-Time Dashboard
+            </h2>
+            <p className="text-gray-600 mb-6 font-medium">
+              Track water contamination, disease cases, and AI predictions with
+              interactive maps and analytics.
+            </p>
+            <button className="bg-green-600 text-white px-6 py-3 rounded-xl shadow hover:bg-green-700 transition">
+              View Demo
+            </button>
+          </motion.div>
 
     {/* Right Content with 3D Hover Card */}
     <motion.div
