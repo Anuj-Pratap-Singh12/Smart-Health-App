@@ -348,9 +348,9 @@ const Home = () => {
               Track water contamination, disease cases, and AI predictions with
               interactive maps and analytics.
             </p>
-            <button className="bg-green-600 text-white px-6 py-3 rounded-xl shadow hover:bg-green-700 transition">
+            <Link to='/dashboard' className="bg-green-600 text-white px-6 py-3 rounded-xl shadow hover:bg-green-700 transition">
               View Demo
-            </button>
+            </Link>
           </motion.div>
 
     {/* Right Content with 3D Hover Card */}
