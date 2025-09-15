@@ -1,51 +1,166 @@
-import React from "react";
-import { Link } from "react-router-dom"; // using react-router for navigation
+import React, { useState } from "react";
 
-export default function Navbar() {
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
+
   return (
-    <nav className="bg-gray-900 text-white px-6 py-3 flex items-center justify-between shadow-md">
-      {/* Logo / Brand */}
-      <div className="text-xl font-bold">MyWebsite</div>
+    <nav className="bg-white text-gray-900 shadow-lg">
+      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between flex-nowrap">
+        {/* Logo */}
+        <div className="flex items-center space-x-2 flex-shrink-0">
+          <img
+            src="https://flowbite.com/docs/images/logo.svg"
+            alt="Logo"
+            className="h-8 w-8"
+          />
+          <span className="font-bold text-3xl whitespace-nowrap">
+            Smart Health
+          </span>
+        </div>
 
-      {/* Navigation Links */}
-      <ul className="flex space-x-6">
-        <li>
-          <Link to="/" className="hover:text-green-400 transition">
+        {/* Desktop Links (show only on large screens) */}
+        <div className="hidden lg:flex items-center space-x-4 xl:space-x-6  text-xl font-medium flex-shrink">
+          <a href="#" className="hover:text-green-600 whitespace-nowrap">
             Home
-          </Link>
-        </li>
-        <li>
-          <Link to="/about" className="hover:text-green-400 transition">
+          </a>
+          <a href="#" className="hover:text-green-600 whitespace-nowrap">
             About
-          </Link>
-        </li>
-        <li>
-          <Link to="/services" className="hover:text-green-400 transition">
-            Services
-          </Link>
-        </li>
-        <li>
-          <Link to="/contact" className="hover:text-green-400 transition">
+          </a>
+          <a href="#" className="hover:text-green-600 whitespace-nowrap">
+            Reports
+          </a>
+          <a href="#" className="hover:text-green-600 whitespace-nowrap">
+            Communities
+          </a>
+          <a href="#" className="hover:text-green-600 whitespace-nowrap">
             Contact
-          </Link>
-        </li>
-      </ul>
+          </a>
+        </div>
 
-      {/* Buttons */}
-      <div className="flex space-x-4">
-        <Link
-          to="/login"
-          className="bg-green-500 hover:bg-green-600 px-6 py-2 rounded-lg transition"
-        >
-          Login
-        </Link>
-        <Link
-          to="/signup"
-          className="bg-white text-green-600 border border-green-500 hover:bg-green-100 px-6 py-2 rounded-lg transition"
-        >
-          Signup
-        </Link>
+        {/* Right side */}
+        <div className="flex items-center space-x-3 flex-shrink-0">
+          {/* Profile dropdown (desktop) */}
+          <div className="relative hidden lg:block">
+            <button
+              onClick={() => setProfileOpen(!profileOpen)}
+              className="focus:outline-none"
+            >
+              <img
+                src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                alt="profile"
+                className="h-8 w-8 rounded-full"
+              />
+            </button>
+            {profileOpen && (
+              <div className="absolute right-0 mt-2 w-48 bg-white text-gray-800 rounded-lg shadow-lg z-50">
+                <div className="px-4 py-3 border-b">
+                  <p className="font-semibold">Aman Gupta</p>
+                  <p className="text-sm text-gray-500">name@gmail.com</p>
+                </div>
+                <a href="#" className="block px-4 py-2 hover:bg-gray-100">
+                  Dashboard
+                </a>
+                <a href="#" className="block px-4 py-2 hover:bg-gray-100">
+                  My Account
+                </a>
+                <a href="#" className="block px-4 py-2 hover:bg-gray-100">
+                  Settings
+                </a>
+                <a href="#" className="block px-4 py-2 hover:bg-gray-100">
+                  Sign out
+                </a>
+              </div>
+            )}
+          </div>
+
+          {/* Get Started button (desktop only) */}
+          <div className="hidden lg:block flex-shrink-0">
+            <button
+              type="button"
+              className="text-white bg-green-600 hover:bg-green-700 
+                         focus:ring-4 focus:outline-none focus:ring-green-300 
+                         font-medium rounded-lg text-lg px-4 py-2 whitespace-nowrap"
+            >
+              Get started
+            </button>
+          </div>
+
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="lg:hidden focus:outline-none"
+          >
+            {isOpen ? (
+              // X icon
+              <div className="space-y-1">
+                <span className="block w-6 h-0.5 bg-gray-900 rotate-45 translate-y-1"></span>
+                <span className="block w-6 h-0.5 bg-gray-900 -rotate-45 -translate-y-1"></span>
+              </div>
+            ) : (
+              // Hamburger icon
+              <div className="space-y-1">
+                <span className="block w-6 h-0.5 bg-gray-900"></span>
+                <span className="block w-6 h-0.5 bg-gray-900"></span>
+                <span className="block w-6 h-0.5 bg-gray-900"></span>
+              </div>
+            )}
+          </button>
+        </div>
       </div>
+
+      {/* Mobile Dropdown */}
+      {isOpen && (
+        <div className="lg:hidden bg-gray-100  text-gray-900 px-4 py-3  space-y-2 shadow-md t">
+          <a href="#" className="block hover:text-green-600">
+            Home
+          </a>
+          <a href="#" className="block hover:text-green-600">
+            About
+          </a>
+          <a href="#" className="block hover:text-green-600">
+            Reports
+          </a>
+          <a href="#" className="block hover:text-green-600">
+            Communities
+          </a>
+          <a href="#" className="block hover:text-green-600">
+            Contact
+          </a>
+          <hr className="my-2" />
+          {/* Profile + Button in mobile */}
+          <a href="#" className="block hover:text-green-600">
+            Dashboard
+          </a>
+          <a href="#" className="block hover:text-green-600">
+            My Account
+          </a>
+          <a href="#" className="block hover:text-green-600">
+            Settings
+          </a>
+          <a href="#" className="block hover:text-green-600">
+            Sign out
+          </a>
+          <button
+            type="button"
+            className="w-full mt-3 text-white bg-green-600 hover:bg-green-700 
+                       focus:ring-4 focus:outline-none focus:ring-green-300 
+                       font-medium rounded-lg text-lg px-4 py-2"
+          >
+            Get started
+          </button>
+          <button
+            type="button"
+            className="w-full mt-3 text-white bg-green-600 hover:bg-green-700 
+                       focus:ring-4 focus:outline-none focus:ring-green-300 
+                       font-medium rounded-lg text-lg px-4 py-2"
+          >
+            Get started
+          </button>
+        </div>
+      )}
     </nav>
   );
-}
+};
+
+export default Navbar;
