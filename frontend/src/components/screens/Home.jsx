@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../Navbar";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   HeartPulse,
@@ -195,9 +196,9 @@ const Home = () => {
               Track water contamination, disease cases, and AI predictions with
               interactive maps and analytics.
             </p>
-            <button className="bg-green-600 text-white px-6 py-3 rounded-xl shadow hover:bg-green-700 transition">
+            <Link to='/DashBoard' className="bg-green-600 text-white px-6 py-3 rounded-xl shadow hover:bg-green-700 transition">
               View Demo
-            </button>
+            </Link>
           </motion.div>
 
           <motion.div
