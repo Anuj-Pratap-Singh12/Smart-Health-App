@@ -98,16 +98,36 @@ const Dashboard = () => {
 
   return (
     <div className="bg-green-50 min-h-screen p-4 md:p-6">
-      {/* Header */}
-      <div className="bg-green-100 p-5 rounded-lg shadow mb-6 flex flex-col md:flex-row justify-between items-center">
+      {/* Header with back + alert buttons */}
+      <div className="bg-green-100 p-5 rounded-lg shadow mb-6 flex flex-col md:flex-row justify-between items-center relative">
+        
+        {/* Back button */}
+        <a
+          href="/"
+          className="absolute left-4 top-4 md:static md:mr-auto bg-white text-green-700 border border-green-400 
+                     px-3 py-1 rounded hover:bg-green-50 transition"
+        >
+          ⬅ Back
+        </a>
+
         <div className="flex items-center gap-3">
           <div className="bg-green-400 text-white font-bold rounded-full w-12 h-12 flex items-center justify-center">NH</div>
           <div>
             <h1 className="font-bold text-xl md:text-2xl">National Health Surveillance Dashboard</h1>
-            <p className="text-sm md:text-base text-green-700">Light-green gradient • demo data • state drill-down</p>
+            
           </div>
         </div>
-        <p className="text-sm md:text-base mt-2 md:mt-0 text-green-700">Demo • Click a state to view details</p>
+
+        
+
+        {/* Red Alert button */}
+        <a
+          href="/alert"
+          className="absolute right-4 top-4 md:static md:ml-auto bg-red-600 text-white font-semibold px-4 py-2 rounded-lg shadow 
+                     hover:bg-red-700 transition"
+        >
+          🚨 Alert
+        </a>
       </div>
 
       <div className="flex flex-col md:flex-row gap-6">
@@ -179,8 +199,8 @@ const Dashboard = () => {
                 <Doughnut
                   data={{
                     labels: ["Low", "High"],
-                    datasets: [{ data: [0.5, 0.5], backgroundColor: ["#d1fae5", "#facc15"] }]
-                  }}
+                    datasets: [{ data: [0.5, 0.5], backgroundColor: ["#d1fae5", "#facc15"] }]}
+                  }
                   options={chartOptions}
                   className="h-full"
                 />

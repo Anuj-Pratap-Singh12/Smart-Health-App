@@ -15,12 +15,12 @@ const Navbar = () => {
             className="h-8 w-8"
           />
           <span className="font-bold text-3xl whitespace-nowrap">
-            Smart Health
+            SANJEEVANI
           </span>
         </div>
 
-        {/* Desktop Links (show only on large screens) */}
-        <div className="hidden lg:flex items-center space-x-4 xl:space-x-6  text-xl font-medium flex-shrink">
+        {/* Desktop Links */}
+        <div className="hidden lg:flex items-center space-x-4 xl:space-x-6 text-xl font-medium flex-shrink">
           <a href="#" className="hover:text-green-600 whitespace-nowrap">
             Home
           </a>
@@ -74,16 +74,23 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* Get Started button (desktop only) */}
-          <div className="hidden lg:block flex-shrink-0">
-            <button
-              type="button"
+          {/* Login / Signup buttons (desktop only) */}
+          <div className="hidden lg:flex items-center space-x-2">
+            <a
+              href="/login"
+              className="text-green-600 border border-green-600 hover:bg-green-50 
+                         rounded-lg text-lg px-4 py-2 whitespace-nowrap"
+            >
+              Login
+            </a>
+            <a
+              href="/signup"
               className="text-white bg-green-600 hover:bg-green-700 
                          focus:ring-4 focus:outline-none focus:ring-green-300 
                          font-medium rounded-lg text-lg px-4 py-2 whitespace-nowrap"
             >
-              Get started
-            </button>
+              Signup
+            </a>
           </div>
 
           {/* Mobile hamburger */}
@@ -111,7 +118,7 @@ const Navbar = () => {
 
       {/* Mobile Dropdown */}
       {isOpen && (
-        <div className="lg:hidden bg-gray-100  text-gray-900 px-4 py-3  space-y-2 shadow-md t">
+        <div className="lg:hidden bg-gray-100 text-gray-900 px-4 py-3 space-y-2 shadow-md">
           <a href="#" className="block hover:text-green-600">
             Home
           </a>
@@ -141,22 +148,23 @@ const Navbar = () => {
           <a href="#" className="block hover:text-green-600">
             Sign out
           </a>
-          <button
-            type="button"
-            className="w-full mt-3 text-white bg-green-600 hover:bg-green-700 
+
+          {/* Login / Signup buttons in mobile */}
+          <a
+            href="/login"
+            className="w-full block text-center mt-3 text-green-600 border border-green-600 
+                       hover:bg-green-50 rounded-lg text-lg px-4 py-2"
+          >
+            Login
+          </a>
+          <a
+            href="/signup"
+            className="w-full block text-center mt-3 text-white bg-green-600 hover:bg-green-700 
                        focus:ring-4 focus:outline-none focus:ring-green-300 
                        font-medium rounded-lg text-lg px-4 py-2"
           >
-            Get started
-          </button>
-          <button
-            type="button"
-            className="w-full mt-3 text-white bg-green-600 hover:bg-green-700 
-                       focus:ring-4 focus:outline-none focus:ring-green-300 
-                       font-medium rounded-lg text-lg px-4 py-2"
-          >
-            Get started
-          </button>
+            Signup
+          </a>
         </div>
       )}
     </nav>
