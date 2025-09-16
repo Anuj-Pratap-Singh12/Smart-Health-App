@@ -198,9 +198,9 @@ const Home = () => {
           visible: { opacity: 1, y: 0, transition: { duration: 1.5 } },
         }}
       >
-        <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-2xl font-semibold shadow-lg transition transform hover:scale-105">
+        <Link to="/form" className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-2xl font-semibold shadow-lg transition transform hover:scale-105">
           Get Started
-        </button>
+        </Link>
         <button className="border border-green-600 text-green-700 hover:bg-green-600 hover:text-white px-6 py-3 rounded-2xl font-semibold shadow-lg transition transform hover:scale-105">
           Learn More
         </button>
