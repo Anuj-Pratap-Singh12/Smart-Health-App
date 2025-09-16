@@ -154,70 +154,7 @@ const Form = () => {
             </div>
           </div>
 
-          {/* ---- Environmental Info ---- */}
-          <hr className="border-t-2 border-green-200 my-6" />
-          <div>
-            <h2 className="flex items-center text-2xl font-bold text-black mb-6">
-              <Droplets className="w-7 h-7 text-green-700 mr-2" /> Environmental Details
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div>
-                <label className="block text-sm font-semibold text-green-800 mb-2 flex items-center">
-                  <FlaskConical className="w-4 h-4 mr-1" /> pH Level
-                </label>
-                <input
-                  type="number"
-                  step="0.1"
-                  placeholder="e.g. 7.2"
-                  className="w-full px-4 py-3 rounded-xl border border-green-300 focus:ring-2 focus:ring-green-500 outline-none"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-semibold text-green-800 mb-2 flex items-center">
-                  <Droplets className="w-4 h-4 mr-1" /> Turbidity (NTU)
-                </label>
-                <input
-                  type="number"
-                  placeholder="e.g. 5"
-                  className="w-full px-4 py-3 rounded-xl border border-green-300 focus:ring-2 focus:ring-green-500 outline-none"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-semibold text-green-800 mb-2 flex items-center">
-                  <FlaskConical className="w-4 h-4 mr-1" /> Contamination
-                </label>
-                <select className="w-full px-4 py-3 rounded-xl border border-green-300 focus:ring-2 focus:ring-green-500 outline-none">
-                  <option>None</option>
-                  <option>Bacterial</option>
-                  <option>Chemical</option>
-                  <option>Other</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-              <div>
-                <label className="block text-sm font-semibold text-green-800 mb-2 flex items-center">
-                  <Wind className="w-4 h-4 mr-1" /> AQI Level
-                </label>
-                <input
-                  type="number"
-                  placeholder="e.g. 120"
-                  className="w-full px-4 py-3 rounded-xl border border-green-300 focus:ring-2 focus:ring-green-500 outline-none"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-semibold text-green-800 mb-2 flex items-center">
-                  <ThermometerSun className="w-4 h-4 mr-1" /> Temperature (°C)
-                </label>
-                <input
-                  type="number"
-                  placeholder="e.g. 36.5"
-                  className="w-full px-4 py-3 rounded-xl border border-green-300 focus:ring-2 focus:ring-green-500 outline-none"
-                />
-              </div>
-            </div>
-          </div>
+          
 
           {/* ---- Additional Info ---- */}
           <hr className="border-t-2 border-green-200 my-6" />
