@@ -4,12 +4,11 @@ const User = require("../models/User");
 const { body, validationResult } = require("express-validator");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const cors = require("cors");
 
-const jwtSecret = "Maihoongianmaihoonbadatakatwar";
-
-// Enable CORS for frontend requests
-router.use(cors());
+const jwtSecret = process.env.JWT_SECRET;
+if (!jwtSecret) {
+  console.warn("JWT_SECRET is not set; logins will fail until it is configured.");
+}
 
 // ---------------- Signup Route ----------------
 router.post("/createuser", [
@@ -69,7 +68,7 @@ router.post(
       }
 
       const data = { user: { id: userData.id } };
-      const authToken = jwt.sign(data, jwtSecret);
+      const authToken = jwt.sign(data, jwtSecret, { expiresIn: "7d" });
 
       res.json({ success: true, authToken, message: "Login successful" });
     } catch (error) {

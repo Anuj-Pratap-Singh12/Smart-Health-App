@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { API_URL } from "../../config";
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -24,7 +25,7 @@ export default function Signup() {
     setMessage("");
 
     try {
-      const res = await axios.post("http://localhost:5000/api/createuser", formData);
+      const res = await axios.post(`${API_URL}/api/createuser`, formData);
 
       setMessage(res.data.message);
       setFormData({ name: "", username: "", email: "", password: "", location: "" });

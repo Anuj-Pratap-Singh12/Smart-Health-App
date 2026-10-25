@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { API_URL } from "../../config";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const Login = () => {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/loginuser", {
+      const response = await fetch(`${API_URL}/api/loginuser`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(credentials),
@@ -29,7 +30,7 @@ const Login = () => {
       console.log("Login response:", json);
 
       if (!json.success) {
-        setError("Invalid email or password.");
+        setError(json.message || "Invalid email or password.");
       } else {
         localStorage.setItem("userEmail", credentials.email);
         localStorage.setItem("authToken", json.authToken);
