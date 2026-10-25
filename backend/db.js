@@ -1,21 +1,26 @@
 const mongoose = require("mongoose");
 
-const mongodb = async () => {
-  try {
-    await mongoose.connect(
-      "mongodb+srv://hello:8IBGptaPjhjGuxHZ@cluster0.6twl0a4.mongodb.net/smarthealth?retryWrites=true&w=majority&appName=Cluster0"
-    );
-    console.log("Connected to MongoDB");
+// Reuse one connection across requests (important on Vercel, where the
+// function instance is kept warm between invocations).
+let connection = null;
 
-    const fetched_data = mongoose.connection.db.collection("foodItems");
-    const data = await fetched_data.find({}).toArray();
-    global.foodItems = data;
-    const fetched_data2 = mongoose.connection.db.collection("foodCategory");
-    const catData = await fetched_data2.find({}).toArray();
-    global.foodCategory = catData;
-  } catch (error) {
-    console.error("Error connecting to MongoDB", error);
+const mongodb = () => {
+  if (!process.env.MONGO_URI) {
+    return Promise.reject(new Error("MONGO_URI environment variable is not set"));
   }
+  if (!connection) {
+    connection = mongoose
+      .connect(process.env.MONGO_URI, { serverSelectionTimeoutMS: 10000 })
+      .then((m) => {
+        console.log("Connected to MongoDB");
+        return m;
+      })
+      .catch((err) => {
+        connection = null; // allow a retry on the next request
+        throw err;
+      });
+  }
+  return connection;
 };
 
 module.exports = mongodb;
